@@ -24,7 +24,7 @@ public class WebVRCamera : MonoBehaviour
     {
         WebVRManager.Instance.OnVRChange += onVRChange;
         WebVRManager.Instance.OnHeadsetUpdate += onHeadsetUpdate;
-        
+
         cameraMain = GameObject.Find("CameraMain").GetComponent<Camera>();
         cameraL = GameObject.Find("CameraL").GetComponent<Camera>();
         cameraR = GameObject.Find("CameraR").GetComponent<Camera>();
@@ -34,13 +34,13 @@ public class WebVRCamera : MonoBehaviour
 
     void Update()
     {
-        if (vrActive)
+        if (vrActive) // VR
         {
             cameraMain.enabled = false;
             cameraL.enabled = true;
             cameraR.enabled = true;
         }
-        else
+        else // 非VR
         {
             cameraMain.enabled = true;
             cameraL.enabled = false;
@@ -49,7 +49,7 @@ public class WebVRCamera : MonoBehaviour
 
         #if !UNITY_EDITOR && UNITY_WEBGL
         // Calls Javascript to Submit Frame to the browser WebVR API.
-        StartCoroutine(endOfFrame());
+          StartCoroutine(endOfFrame());
         #endif
     }
 

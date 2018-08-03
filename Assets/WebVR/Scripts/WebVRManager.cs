@@ -14,12 +14,12 @@ public class WebVRManager : MonoBehaviour
 
     [HideInInspector]
     public WebVRState vrState = WebVRState.NORMAL;
-    
+
     private static WebVRManager instance;
 
     [Tooltip("Preserve the manager across scenes changes.")]
     public bool dontDestroyOnLoad = true;
-    
+
     [Header("Tracking")]
 
     [Tooltip("Default height of camera if no room-scale transform is present.")]
@@ -30,10 +30,10 @@ public class WebVRManager : MonoBehaviour
 
     public delegate void VRCapabilitiesUpdate(WebVRDisplayCapabilities capabilities);
     public event VRCapabilitiesUpdate OnVRCapabilitiesUpdate;
-    
+
     public delegate void VRChange(WebVRState state);
     public event VRChange OnVRChange;
-    
+
     public delegate void HeadsetUpdate(
         Matrix4x4 leftProjectionMatrix,
         Matrix4x4 leftViewMatrix,
@@ -41,12 +41,12 @@ public class WebVRManager : MonoBehaviour
         Matrix4x4 rightViewMatrix,
         Matrix4x4 sitStandMatrix);
     public event HeadsetUpdate OnHeadsetUpdate;
-   
-    public delegate void ControllerUpdate(int index, 
-        string hand, 
-        Vector3 position, 
-        Quaternion rotation, 
-        Matrix4x4 sitStand, 
+
+    public delegate void ControllerUpdate(int index,
+        string hand,
+        Vector3 position,
+        Quaternion rotation,
+        Matrix4x4 sitStand,
         WebVRControllerButton[] buttons,
         float[] axes);
     public event ControllerUpdate OnControllerUpdate;
@@ -59,7 +59,7 @@ public class WebVRManager : MonoBehaviour
                 var managerInScene = FindObjectOfType<WebVRManager>();
 
                 var name = "WebVRManager";
-                
+
                 if (managerInScene != null)
                 {
                     instance = managerInScene;
@@ -68,11 +68,11 @@ public class WebVRManager : MonoBehaviour
                 else
                 {
                     GameObject go = new GameObject(name);
-                    
-                    go.AddComponent<WebVRManager>();                    
+
+                    go.AddComponent<WebVRManager>();
                 }
             }
-            
+
             return instance;
         }
     }
@@ -80,7 +80,7 @@ public class WebVRManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-                
+
         if (instance.dontDestroyOnLoad)
         {
             DontDestroyOnLoad(instance);
@@ -152,10 +152,10 @@ public class WebVRManager : MonoBehaviour
     public void toggleVrState()
     {
         #if !UNITY_EDITOR && UNITY_WEBGL
-        if (this.vrState == WebVRState.ENABLED)
-            setVrState(WebVRState.NORMAL);
-        else
-            setVrState(WebVRState.ENABLED);
+          if (this.vrState == WebVRState.ENABLED)
+              setVrState(WebVRState.NORMAL);
+          else
+              setVrState(WebVRState.ENABLED);
         #endif
     }
 
@@ -169,7 +169,7 @@ public class WebVRManager : MonoBehaviour
     // received start VR from WebVR browser
     public void OnStartVR()
     {
-        Instance.setVrState(WebVRState.ENABLED);        
+        Instance.setVrState(WebVRState.ENABLED);
     }
 
     // receive end VR from WebVR browser
@@ -232,7 +232,7 @@ public class WebVRManager : MonoBehaviour
         public float[] position = null;
         public float[] axes = null;
         public WebVRControllerButton[] buttons = new WebVRControllerButton[0];
-    }    
+    }
 
     void Start()
     {

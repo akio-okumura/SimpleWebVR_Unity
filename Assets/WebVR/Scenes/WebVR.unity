@@ -535,7 +535,7 @@ GameObject:
   - component: {fileID: 427835752}
   - component: {fileID: 427835751}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -787,7 +787,7 @@ Prefab:
     - target: {fileID: 114038308936181916, guid: 54a613ba6e982e84db04156af08d6a89,
         type: 2}
       propertyPath: TrackingSpace
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54a613ba6e982e84db04156af08d6a89, type: 2}
