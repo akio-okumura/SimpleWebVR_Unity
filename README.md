@@ -14,3 +14,6 @@ WebVRManager,WebVRCamera,FreeFlightController
 の3つ
 後は、UnityEditor上の表のインスペクタを弄ったくらいしかしていない記憶
 DefaultHeightとか、TrackingSpaceとかは触った（けどそこまで効果は無い模様）
+
+# 実験
+MainCameraを無効化してみると、VR化した時にOculusGo上で固まる
