@@ -151,6 +151,7 @@ public class WebVRManager : MonoBehaviour
 
     public void toggleVrState()
     {
+        // UnityEditorではなく、Unity_WebGLの時
         #if !UNITY_EDITOR && UNITY_WEBGL
           if (this.vrState == WebVRState.ENABLED)
               setVrState(WebVRState.NORMAL);
@@ -237,7 +238,7 @@ public class WebVRManager : MonoBehaviour
     void Start()
     {
         #if !UNITY_EDITOR && UNITY_WEBGL
-        ConfigureToggleVRKeyName(toggleVRKeyName);
+          ConfigureToggleVRKeyName(toggleVRKeyName);
         #endif
 
         setTrackingSpaceType();
@@ -247,11 +248,14 @@ public class WebVRManager : MonoBehaviour
     {
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
 
+        // UNITY_EDITOR中またはUNITY_WEBGLでない時に、toggleVRKeyNameのキーを
+        // 離した時にtoggleVrStateでVRStateをトグルさせる処理
         #if UNITY_EDITOR || !UNITY_WEBGL
-        bool quickToggleEnabled = toggleVRKeyName != null && toggleVRKeyName != "";
-        if (quickToggleEnabled && Input.GetKeyUp(toggleVRKeyName))
-            toggleVrState();
+          bool quickToggleEnabled = toggleVRKeyName != null && toggleVRKeyName != "";
+          if (quickToggleEnabled && Input.GetKeyUp(toggleVRKeyName))
+              toggleVrState();
         #endif
+
     }
 
     void OnGUI()
